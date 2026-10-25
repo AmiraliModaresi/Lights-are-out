@@ -1,0 +1,242 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #000;
+}
+
+.hint {
+    width: 250px;
+    height: 50px;
+    padding: 6px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    background-color: #222222;
+    color: rgb(168, 168, 168);
+
+    position: absolute;
+    top: -52px;
+    transition: 0.8s ease-out;
+
+    z-index: 3;
+}
+
+/* محتوای زیر لایه‌ی مشکی */
+.reveal-world {
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+    background: #000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center {
+    width: 60%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    position: relative;
+}
+
+.text-container {
+    position: relative;
+    text-align: center;
+    font-size: 7vw;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-optical-sizing: auto;
+    line-height: 14vw;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.text-border {
+    background: -webkit-linear-gradient(45deg,
+            #FF5CD6 0%,
+            #BB4DFF 50%,
+            #59F9FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 6px transparent;
+}
+
+.text {
+    color: black;
+    position: absolute;
+    inset: 0;
+}
+
+.crown-img {
+    width: 130px;
+
+    position: absolute;
+    top: -44px;
+    right: -30px;
+}
+
+.wings-img {
+    width: 200px;
+
+    position: absolute;
+    top: 20vh;
+    right: -17vw;
+
+    /* transform: rotate(15deg); */
+    animation: wings-float 4s ease-in-out infinite;
+}
+
+.spider-img {
+    width: 120px;
+
+    position: absolute;
+    top: 18vh;
+    left: -10vw;
+
+    animation: spider-float 3s ease-in-out infinite;
+}
+
+.spider-web {
+    width: 2px;
+    height: 200px;
+    background-color: #BB4DFF;
+    position: absolute;
+    margin-top: -180px;
+    top: 18vh;
+    left: calc(-10vw + 65px);
+
+    animation: spider-float 3s ease-in-out infinite;
+}
+
+.music-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+
+    position: absolute;
+    right: -16vw;
+    bottom: 5vh;
+    transform: rotate(10deg);
+}
+
+.music1-img {
+    height: 150px;
+    animation: music1-float 4s ease-in-out infinite;
+}
+
+.music2-img {
+    height: 150px;
+    animation: music2-float 4s ease-in-out infinite;
+}
+
+.coin-img {
+    width: 150px;
+
+    position: absolute;
+    left: -13vw;
+    bottom: 8vh;
+
+    animation: coin-float 3s ease-in-out infinite;
+}
+
+@keyframes spider-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes coin-float {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes wings-float {
+
+    0%,
+    100% {
+        transform: rotate(3deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+    }
+}
+
+@keyframes music1-float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes music2-float {
+
+    0%,
+    100% {
+        transform: translateY(-10px);
+    }
+
+    50% {
+        transform: translateY(0px);
+    }
+}
+
+
+/* this part does the magic! */
+.reveal-world::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #000;
+    pointer-events: none;
+    z-index: 2;
+
+    -webkit-mask-image: radial-gradient(circle 160px at var(--x, -1000px) var(--y, -1000px),
+            transparent 0%,
+            transparent 30%,
+            black 100%);
+
+    mask-image: radial-gradient(circle 160px at var(--x, -1000px) var(--y, -1000px),
+            transparent 0%,
+            transparent 30%,
+            black 100%);
+
+}
